@@ -7,8 +7,8 @@ const msg = document.querySelector(".result");
 const userScorePara = document.querySelector("#user-score");
 const compScorePara = document.querySelector("#comp-score");
 
-const userChoiceUpdate=document.querySelector(".user-choice");
-const compChoiceUpdate=document.querySelector(".comp-choice");
+const userChoiceUpdate = document.querySelector(".user-choice");
+const compChoiceUpdate = document.querySelector(".comp-choice");
 
 const randomCompChoice = () => {
   const options = ["rock", "paper", "scissors"];
@@ -27,32 +27,32 @@ const showWinner = (userWin) => {
     userScorePara.innerText = userScore;
     msg.innerText = "You Win!!!!";
     msg.style.backgroundColor = "green";
-} else {
+  } else {
     compScore++;
     compScorePara.innerText = compScore;
     msg.innerText = "You Lose :(";
     msg.style.backgroundColor = "red";
-}
+  }
 };
 
 const playGame = (userChoice) => {
-    const compChoice = randomCompChoice();
-    userChoiceUpdate.innerText=userChoice;
-    compChoiceUpdate.innerText=compChoice;
-    
-    if (userChoice === compChoice) {
-        drawGame();
+  const compChoice = randomCompChoice();
+  userChoiceUpdate.innerText = userChoice;
+  compChoiceUpdate.innerText = compChoice;
+
+  if (userChoice === compChoice) {
+    drawGame();
+  } else {
+    let userWin = true;
+    if (userChoice === "rock") {
+      userWin = compChoice === "paper" ? false : true;
+    } else if (userChoice === "paper") {
+      userWin = compChoice === "scissors" ? false : true;
     } else {
-        let userWin = true;
-        if (userChoice === "rock") {
-            userWin = compChoice === "paper" ? false : true;
-        } else if (userChoice === "paper") {
-            userWin = compChoice === "scissors" ? false : true;
-        } else {
-            userWin = compChoice === "rock" ? false : true;
-        }
-        showWinner(userWin);
+      userWin = compChoice === "rock" ? false : true;
     }
+    showWinner(userWin);
+  }
 };
 
 choices.forEach((choice) => {
